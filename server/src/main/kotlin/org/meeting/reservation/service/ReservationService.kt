@@ -2,7 +2,10 @@ package org.meeting.reservation.service
 
 import org.meeting.reservation.domain.ReservationLogRepository
 import org.meeting.reservation.mapper.ReservationLogMapper
+import org.meeting.reservation.model.dto.reservation.ReservationCancelRequestDto
 import org.meeting.reservation.model.dto.reservation.ReservationSaveRequestDto
+import org.meeting.reservation.model.enum.UseYn
+import org.meeting.reservation.model.vto.reservation.ReservationCancelCheckerVto
 import org.meeting.reservation.model.vto.reservation.ReservationSaveCheckerVto
 import org.springframework.stereotype.Service
 
@@ -13,7 +16,7 @@ class ReservationService(
 ) {
     fun newReservation(request: ReservationSaveRequestDto): ReservationSaveCheckerVto {
         val preRoomReservation =
-            reservationLogRepository.findByKey_RoomCdAndKey_ReservationDtAndKey_ReservationCheckerAndKey_StartTm(
+            reservationLogRepository.findByKey_RoomCdAndKey_ReservationDtAndKey_ReservationCheckerAndKey_StartTmAndUseYn(
                 request.roomCd, request.reservationDt, request.checker, request.startTm
             )
 
@@ -33,6 +36,29 @@ class ReservationService(
         return ReservationSaveCheckerVto(
             isReservationSuccess = true,
             reservationMessage = "SUCCESS"
+        )
+    }
+
+    fun cancelReservation(cancelRequest: ReservationCancelRequestDto): ReservationCancelCheckerVto {
+        val preRoomReservation =
+            reservationLogRepository.findByKey_RoomCdAndKey_ReservationDtAndKey_ReservationCheckerAndKey_StartTm(
+                cancelRequest.roomCd, cancelRequest.reservationDt, cancelRequest.checker, cancelRequest.startTm
+            ) ?: return ReservationCancelCheckerVto(
+                    isReservationCancelSuccess = false,
+                    reservationCanelMessage = "예약취소 요청에 대한 예약건이 없습니다. 취소할 예약이 없습니다."
+                )
+
+        if(preRoomReservation.useYn == UseYn.NO.code)
+            return ReservationCancelCheckerVto(
+                isReservationCancelSuccess = false,
+                reservationCanelMessage = "이미 예약취소된 건입니다."
+            )
+
+        preRoomReservation.cancel()
+
+        return ReservationCancelCheckerVto(
+            isReservationCancelSuccess = true,
+            reservationCanelMessage = "SUCCESS"
         )
     }
 }

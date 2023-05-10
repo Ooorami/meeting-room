@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 @Api(tags = ["01. Meeting Room"], description = "회의실 관련 API")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(name = "/api/room", produces = ["application/json;charset=utf-8"])
+@RequestMapping("/api/room", produces = ["application/json;charset=utf-8"])
 class RoomController(
     private val roomService: RoomService
 ) {
@@ -25,7 +25,7 @@ class RoomController(
         notes = "회의실 이름 요청시 생성. 단, 같은 이름이 존재할경우 실패",
         response = ApiCommonResponse::class
     )
-    @RequestMapping(name = "/create", method = [RequestMethod.POST])
+    @RequestMapping(value = ["/create"], method = [RequestMethod.POST])
     fun createNewRoom(@RequestBody request: CreateRoomRequestDto): ApiCommonResponse {
         val createResult = roomService.saveRoom(request)
         return if(createResult.isRoomSaveSuccess){

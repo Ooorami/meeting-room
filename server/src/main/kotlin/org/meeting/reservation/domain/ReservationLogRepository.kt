@@ -6,7 +6,11 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ReservationLogRepository: JpaRepository<ReservationLog, ReservationLog.Key> {
+    fun findByKey_RoomCdAndKey_ReservationDtAndKey_ReservationCheckerAndKey_StartTmAndUseYn(
+        roomCd: String, reservationDt: String, reservationChecker: String, startTm: String, useYn: String = "Y"
+    ): ReservationLog?
+
     fun findByKey_RoomCdAndKey_ReservationDtAndKey_ReservationCheckerAndKey_StartTm(
-        roomCd: String, reservationDt: String, reservationChecker: String, startTm: String
+        roomCd: String, reservationDt: String, reservationChecker: String, startTm: String, useYn: String = "Y"
     ): ReservationLog?
 }

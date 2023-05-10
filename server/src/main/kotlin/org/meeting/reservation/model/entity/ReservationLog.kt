@@ -1,5 +1,6 @@
 package org.meeting.reservation.model.entity
 
+import org.meeting.reservation.model.enum.UseYn
 import java.io.Serializable
 import javax.persistence.Column
 import javax.persistence.Embeddable
@@ -40,4 +41,8 @@ class ReservationLog(
         @Column(name = "START_TM", length = 20, nullable = false)
         var startTm: String
     ): Serializable
+
+    fun cancel() {
+        useYn = UseYn.NO.code
+    }
 }
