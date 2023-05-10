@@ -5,7 +5,9 @@ import io.swagger.annotations.ApiOperation
 import lombok.RequiredArgsConstructor
 import org.meeting.reservation.model.dto.ApiCommonResponse
 import org.meeting.reservation.model.dto.reservation.ReservationCancelRequestDto
+import org.meeting.reservation.model.dto.reservation.ReservationListRequestDto
 import org.meeting.reservation.model.dto.reservation.ReservationSaveRequestDto
+import org.meeting.reservation.model.dto.room.RoomListResponseDto
 import org.meeting.reservation.model.enum.ApiStatusCode
 import org.meeting.reservation.service.ReservationService
 import org.springframework.web.bind.annotation.RequestBody
@@ -62,6 +64,19 @@ class ResercationController(
                 message = cancelResult.reservationCanelMessage
             )
         }
+    }
 
+    @ApiOperation(
+        value = "예약 현황 조회 API",
+        notes = "현재 예약된 회의실 정보를 반환, 미조회시 빈 리스트 반환",
+        response = RoomListResponseDto::class
+    )
+    @RequestMapping(value = ["/list"], method = [RequestMethod.GET])
+    fun getReservationList(@RequestBody request: ReservationListRequestDto): ApiCommonResponse {
+        return ApiCommonResponse(
+            statusCode = ApiStatusCode.SUCCESS.code,
+            message = "SUCCESS",
+            data = reservationService.getReservationList(request)
+        )
     }
 }

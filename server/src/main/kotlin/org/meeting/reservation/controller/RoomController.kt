@@ -46,7 +46,7 @@ class RoomController(
         notes = "저장된 모든 회의실 정보를 반환, 미조회시 빈 리스트 반환",
         response = RoomListResponseDto::class
     )
-    @RequestMapping(method = [RequestMethod.GET])
+    @RequestMapping(value = ["/list"], method = [RequestMethod.GET])
     fun getRoomList(): ApiCommonResponse{
         return ApiCommonResponse(
             statusCode = ApiStatusCode.SUCCESS.code,

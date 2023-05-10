@@ -2,8 +2,7 @@ package org.meeting.reservation.service
 
 import org.meeting.reservation.domain.ReservationLogRepository
 import org.meeting.reservation.mapper.ReservationLogMapper
-import org.meeting.reservation.model.dto.reservation.ReservationCancelRequestDto
-import org.meeting.reservation.model.dto.reservation.ReservationSaveRequestDto
+import org.meeting.reservation.model.dto.reservation.*
 import org.meeting.reservation.model.enum.UseYn
 import org.meeting.reservation.model.vto.reservation.ReservationCancelCheckerVto
 import org.meeting.reservation.model.vto.reservation.ReservationSaveCheckerVto
@@ -59,6 +58,25 @@ class ReservationService(
         return ReservationCancelCheckerVto(
             isReservationCancelSuccess = true,
             reservationCanelMessage = "SUCCESS"
+        )
+    }
+
+    fun getReservationList(request: ReservationListRequestDto): ReservationListResponseDto {
+        val reservationList = reservationLogRepository.findByKey_RoomCdAndKey_ReservationDt(
+            request.roomCd, request.reservationDt
+        )
+
+        return ReservationListResponseDto(
+            reservationList = reservationList.map { reservation ->
+                ReservationInformation(
+                    roomCd = reservation.key.roomCd,
+                    reservationDt = reservation.key.reservationDt,
+                    checker = reservation.key.reservationChecker,
+                    startTm = reservation.key.startTm,
+                    endTm = reservation.endTm,
+                    reservationTm = reservation.reservationTm
+                )
+            }
         )
     }
 }
