@@ -1,0 +1,27 @@
+spring:
+  config:
+    activate:
+      onProfile: local
+  datasource:
+    #접속 url java 보안에 의해 추가 파라미터를 꼭 넘겨줘야함(;)
+    url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=MEETING_RESERVATION;sendStringParametersAsUnicode=false;trustServerCertificate=true
+    username:
+    password:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  flyway:
+    #Spring 2.x.x 이상시 설정필요값
+    baseline-on-migrate: true
+    baseline-version: 0
+    #flyway migration sql 파일 경로, default = classpath:db/migration
+    locations: classpath:migration
+  jpa:
+    open-in-view: true
+  mvc:
+    pathmatch:
+      #Spring boot 2.6버전 이후에 spring.mvc.pathmatch.matching-strategy 값이
+      #ant_apth_matcher -> path_pattern_parser로 변경되면서 몇몇 라이브러리(swagger포함)에 오류가 발생 해당 값을 명시적으로 revert
+      matching-strategy: ant_path_matcher
+  main:
+    #StartUp 시점에 모든 Bean을 등록하지 않는 설정
+    lazy-initialization: true
+

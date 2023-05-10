@@ -1,0 +1,5 @@
+
+@RestController
+class RoomController() {
+
+}
