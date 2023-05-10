@@ -5,8 +5,8 @@ spring:
   datasource:
     #접속 url java 보안에 의해 추가 파라미터를 꼭 넘겨줘야함(;)
     url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=MEETING_RESERVATION;sendStringParametersAsUnicode=false;trustServerCertificate=true
-    username:
-    password:
+    username: reservation_master
+    password: pw
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
   flyway:
     #Spring 2.x.x 이상시 설정필요값

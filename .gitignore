@@ -139,3 +139,12 @@ fabric.properties
 .idea/**/azureSettings.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij
+
+server/build
+server/gradle
+server/gradlew
+server/gradlew.bat
+server/.gradle/
+.idea/
+client/package-lock.json
+client/yarn.lock
