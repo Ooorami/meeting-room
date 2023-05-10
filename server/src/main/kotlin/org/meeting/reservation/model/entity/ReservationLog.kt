@@ -15,13 +15,13 @@ class ReservationLog(
     var endTm: String,
 
     @Column(name = "RESERVATION_TM", length = 20)
-    var reservationTm: String,
+    var reservationTm: String?,
 
     @Column(name = "TOPIC", length = 20)
-    var topic: String,
+    var topic: String?,
 
     @Column(name = "PARTICIPANT", length = 100)
-    var participant: String,
+    var participant: String?,
 
     @Column(name = "USE_YN", length = 1, nullable = false)
     var useYn: String,
