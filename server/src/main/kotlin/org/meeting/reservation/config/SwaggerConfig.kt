@@ -13,8 +13,6 @@ import springfox.documentation.spi.DocumentationType
 import springfox.documentation.spring.web.plugins.Docket
 import springfox.documentation.swagger2.annotations.EnableSwagger2
 
-
-
 @Configuration
 @EnableSwagger2
 @EnableAutoConfiguration
@@ -26,7 +24,6 @@ class SwaggerConfig {
     private var API_VERSION: String = ""
     private val API_TITLE = "Meeting Room API"
     private val API_DISCRIPTION = "Meeting Room API Document"
-
     @Bean
     open fun api(): Docket {
         return Docket(DocumentationType.SWAGGER_2)

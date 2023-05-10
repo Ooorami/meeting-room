@@ -38,7 +38,8 @@ class RoomService(
                     roomName = room.roomNm,
                     roomCd = room.key.roomCd
                 )
-            })
+            }
+        )
     }
 }
 
