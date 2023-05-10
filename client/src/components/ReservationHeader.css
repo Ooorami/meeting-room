@@ -1,3 +1,5 @@
+@import "../color.css";
+
 .reservationHeader-header {
     width: 100%;
     height: 100px;
@@ -6,8 +8,10 @@
 
 .reservationHeader-footer {
     width: 100%;
-    height: 50%;
+    height: 30%;
     display: flex;
+    position: absolute;
+    bottom: 0;
 }
 
 .title-reservation {
@@ -18,29 +22,16 @@
     align-items: center;
     text-align: center;
     cursor: pointer;
-    border : 2px solid white;
+    border: 2px solid var(--primary-color-white);
     box-sizing: border-box;
     border-right: 1px;
-    font-size: 20px;
-    color: white;
+    font-size: 30px;
+    color: var(--primary-color-white);
 }
 
 .title-reservation:hover {
-    background-color: beige;
+    background-color: var(--secondary-color-yellow);
 }
-
-/*.title-reservation-clicked {*/
-/*    width: 50%;*/
-/*    height: 100%;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    text-align: center;*/
-/*    cursor: pointer;*/
-/*    border : 2px solid black;*/
-/*    border-right: 1px;*/
-/*    background-color: lightslategray;*/
-/*}*/
 
 .title-cancelReservation {
     width: 50%;
@@ -50,12 +41,12 @@
     align-items: center;
     text-align: center;
     cursor: pointer;
-    border : 2px solid white;
+    border: 2px solid var(--primary-color-white);
     box-sizing: border-box;
-    font-size: 20px;
-    color: white;
+    font-size: 30px;
+    color: var(--primary-color-white);
 }
 
 .title-cancelReservation:hover {
-    background-color: beige;
+    background-color: var(--secondary-color-yellow);
 }

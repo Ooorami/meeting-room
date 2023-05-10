@@ -7,6 +7,7 @@ import CancelReservation from "../src/components/pages/CancelReservation/CancelR
 import {ROUTE} from "./constants/Route";
 
 import './App.css';
+import './color.css';
 import {BrowserRouter, Route} from "react-router-dom";
 import {Routes} from "react-router";
 
@@ -15,7 +16,7 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <Routes>
-                    <Route path={ROUTE.INIT} element={<Init/>} />
+                    <Route path={ROUTE.INIT} element={<Init/>}/>
                     <Route path={ROUTE.RESERVATION} element={<Reservation/>}/>
                     <Route path={ROUTE.CANCELRESERVATION} element={<CancelReservation/>}/>
                 </Routes>

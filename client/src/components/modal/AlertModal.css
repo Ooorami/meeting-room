@@ -1,0 +1,38 @@
+@import "../../color.css";
+
+.alert-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 250px;
+    transform: translate(-50%, -50%);
+    background-color: var(--primary-color-white);
+    border-radius: 10px;
+    border: 2px solid var(--secondary-color-gray);
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.alert-modal h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.alert-modal button {
+    background-color: var(--primary-color-tiffanyBlue);
+    border: none;
+    border-radius: 5px;
+    color: var(--primary-color-white);
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.alert-modal button:hover {
+    background-color: var(--secondary-color-yellow);
+}
