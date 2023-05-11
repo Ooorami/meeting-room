@@ -20,7 +20,8 @@ class ReservationService(
             )
 
         if (preRoomReservation != null) {
-            val preReservationAlertString = "예약일자: ${preRoomReservation.key.reservationDt}" +
+            val preReservationAlertString =
+                    "예약일자: ${preRoomReservation.key.reservationDt}" +
                     "예약자: ${preRoomReservation.key.reservationDt}" +
                     "예약시간: ${preRoomReservation.key.startTm} ~ ${preRoomReservation.endTm}"
             return ReservationSaveCheckerVto(

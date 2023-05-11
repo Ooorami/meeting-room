@@ -28,7 +28,7 @@ class RoomController(
     @RequestMapping(value = ["/create"], method = [RequestMethod.POST])
     fun createNewRoom(@RequestBody request: CreateRoomRequestDto): ApiCommonResponse {
         val createResult = roomService.saveRoom(request)
-        return if(createResult.isRoomSaveSuccess){
+        return if (createResult.isRoomSaveSuccess) {
             ApiCommonResponse(
                 statusCode = ApiStatusCode.SUCCESS.code,
                 message = createResult.roomSaveMessage
@@ -47,7 +47,7 @@ class RoomController(
         response = RoomListResponseDto::class
     )
     @RequestMapping(value = ["/list"], method = [RequestMethod.GET])
-    fun getRoomList(): ApiCommonResponse{
+    fun getRoomList(): ApiCommonResponse {
         return ApiCommonResponse(
             statusCode = ApiStatusCode.SUCCESS.code,
             message = "SUCCESS",

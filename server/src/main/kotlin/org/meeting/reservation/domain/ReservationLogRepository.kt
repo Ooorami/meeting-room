@@ -11,7 +11,7 @@ interface ReservationLogRepository: JpaRepository<ReservationLog, ReservationLog
     ): ReservationLog?
 
     fun findByKey_RoomCdAndKey_ReservationDtAndKey_ReservationCheckerAndKey_StartTm(
-        roomCd: String, reservationDt: String, reservationChecker: String, startTm: String, useYn: String = "Y"
+        roomCd: String, reservationDt: String, reservationChecker: String, startTm: String
     ): ReservationLog?
 
     fun findByKey_RoomCdAndKey_ReservationDt(

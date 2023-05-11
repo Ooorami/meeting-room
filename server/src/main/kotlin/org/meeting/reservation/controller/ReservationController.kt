@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/reservation", produces = ["application/json;charset=utf-8"])
-class ResercationController(
+class ReservationController(
     private val reservationService: ReservationService
 ) {
 
@@ -53,6 +53,7 @@ class ResercationController(
     @RequestMapping(value = ["/cancel"], method = [RequestMethod.POST])
     fun cancelReservation(@RequestBody request: ReservationCancelRequestDto): ApiCommonResponse{
         val cancelResult = reservationService.cancelReservation(request)
+
         return if(cancelResult.isReservationCancelSuccess) {
             ApiCommonResponse(
                 statusCode = ApiStatusCode.SUCCESS.code,
