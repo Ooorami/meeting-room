@@ -25,7 +25,7 @@ class ReservationLog(
     var participant: String?,
 
     @Column(name = "USE_YN", length = 1, nullable = false)
-    var useYn: String,
+    var useYn: String = UseYn.YES.code,
 ) {
     @Embeddable
     data class Key(

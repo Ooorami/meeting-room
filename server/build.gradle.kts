@@ -4,7 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.jpa") version "1.8.0"
 
     id("io.spring.dependency-management") version "1.1.0"
-    id("org.springframework.boot") version "2.7.10" apply false
+    id("org.springframework.boot") version "2.7.10"
 }
 
 repositories {
@@ -51,7 +51,6 @@ allprojects {
     configurations {
         all {
             exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
-            exclude(group = "org.springframework.boot", module = "spring-boot-starter-tomcat")
             exclude(group = "org.springframework.boot", module = "spring-boot-starter-json")
         }
     }
