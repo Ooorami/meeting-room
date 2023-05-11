@@ -14,13 +14,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestController
 @ControllerAdvice
 @Order(Ordered.LOWEST_PRECEDENCE)
-class ExceptionAdvisor: ResponseEntityExceptionHandler() {
+class ExceptionAdvisor : ResponseEntityExceptionHandler() {
     @ExceptionHandler(Exception::class)
     fun exceptionHandler(ex: Exception): ResponseEntity<ApiCommonResponse> {
         return ResponseEntity.ok(
             ApiCommonResponse(
                 statusCode = ApiStatusCode.ERROR.code,
-                message = "예기치 못한 오류가 발생했습니다: ${ex.message}",
+                message = "예기치 못한 오류가 발생했습니다: ${ex.message}"
             )
         )
     }
