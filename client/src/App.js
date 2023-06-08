@@ -10,8 +10,12 @@ import './App.css';
 import './color.css';
 import {BrowserRouter, Route} from "react-router-dom";
 import {Routes} from "react-router";
+import Modal from "react-modal";
 
 function App() {
+
+    Modal.setAppElement('#root')
+
     return (
         <div className="App">
             <BrowserRouter>

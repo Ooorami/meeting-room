@@ -1,5 +1,6 @@
 export const ROUTE = {
     INIT: "/",
     RESERVATION: "/reservation",
-    CANCELRESERVATION: "/cancelReservation"
-};
+    CANCELRESERVATION: "/cancelReservation",
+    CONFIRMRESERVATION: "/confirmReservation",
+}

@@ -6,7 +6,7 @@ import {useLocation} from "react-router-dom";
 
 import "./ReservationHeader.css";
 import "../color.css";
-import Text from "./Text";
+import Text from "./molecules/Text";
 
 const ReservationHeader = (props) => {
 

@@ -1,4 +1,5 @@
 @import "../../../color.css";
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
 label {
     line-height: 2rem;
@@ -11,6 +12,7 @@ span {
 
 p {
     line-height: 2em;
+    margin-top: 30px;
 }
 
 input[type="radio"] {
@@ -23,6 +25,7 @@ input[type="radio"] {
 
 select {
     width: 200px;
+    /*height: 40px;*/
     padding: .8em .5em;
     font-family: inherit;
     background: var(--primary-color-white) url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
@@ -39,6 +42,7 @@ select::-ms-expand {
 
 select option {
     color: var(--secondary-color-navy);
+    /*font-size: 15px;*/
 }
 
 .cancelReservation {
@@ -59,6 +63,42 @@ select option {
 
 .cancelReservation-title {
     margin-bottom: 50px;
+}
+
+.table-container {
+    height: 300px;
+    overflow-y: auto;
+    width: 850px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid var(--primary-color-black);
+    white-space: nowrap;
+    width: 100%;
+}
+
+tr {
+    display: flex;
+}
+
+th {
+    border: 1px solid var(--primary-color-black);
+    padding: 8px;
+    text-align: center;
+    background-color: var(--secondary-color-yellow);
+    color: var(--primary-color-black);
+    width: 40%;
+    font-family: "Jua", sans-serif !important;
+}
+
+th div {
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Jua", sans-serif !important;
 }
 
 .cancelReservation-button {
@@ -103,3 +143,4 @@ select option {
 .home:hover {
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%);
 }
+

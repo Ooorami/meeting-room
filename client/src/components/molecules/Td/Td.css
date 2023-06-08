@@ -1,0 +1,21 @@
+tr {
+    background-color: var(--primary-color-white);
+    color: var(--primary-color-black);
+    display: flex;
+}
+
+td {
+    border: 1px solid var(--primary-color-black);
+    padding: 8px;
+    text-align: center;
+    width: 40%;
+}
+
+td div {
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Jua", sans-serif !important;
+}
