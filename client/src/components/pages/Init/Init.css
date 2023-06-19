@@ -8,6 +8,51 @@
     padding: 0;
 }
 
+/*.navigateCollection {*/
+/*    display: flex;*/
+/*}*/
+
+.navigateCollection {
+    display: flex;
+    position: absolute;
+    right: 20px;
+}
+
+.meetingroomReservationInit {
+    color: var(--primary-color-white);
+    font-size: 23px;
+    padding: 0 10px;
+}
+
+.meetingroomReservationInit:hover {
+    color: var(--secondary-color-yellow);
+    cursor: pointer;
+}
+
+.signupInit {
+    color: var(--primary-color-white);
+    font-size: 23px;
+    padding: 0 10px;
+    padding-top: 4px;
+}
+
+.signupInit:hover {
+    color: var(--secondary-color-yellow);
+    cursor: pointer;
+}
+
+.loginInit {
+    color: var(--primary-color-white);
+    font-size: 23px;
+    padding: 0 10px;
+    padding-top: 4px;
+}
+
+.loginInit:hover {
+    color: var(--secondary-color-yellow);
+    cursor: pointer;
+}
+
 .logo {
     margin-top: 150px;
 }

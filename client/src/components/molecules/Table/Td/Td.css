@@ -19,3 +19,19 @@ td div {
     align-items: center;
     font-family: "Jua", sans-serif !important;
 }
+
+.order {
+    padding-top: 3px;
+}
+
+.roomCd {
+    padding-top: 3px;
+}
+
+.reservationDt {
+    padding-top: 3px;
+}
+
+.checker {
+    padding-top: 3px;
+}

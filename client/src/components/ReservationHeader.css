@@ -27,6 +27,7 @@
     border-right: 1px;
     font-size: 30px;
     color: var(--primary-color-white);
+    padding-top: 13px;
 }
 
 .title-reservation:hover {
@@ -45,6 +46,7 @@
     box-sizing: border-box;
     font-size: 30px;
     color: var(--primary-color-white);
+    padding-top: 13px;
 }
 
 .title-cancelReservation:hover {

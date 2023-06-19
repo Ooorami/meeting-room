@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 
 import "./Reservation.css";
 import "../../../color.css";
-import Home from "../../../img/Home.png"
 
+import Home from "../../../assets/img/Home.png"
 import ReservationHeader from "../../ReservationHeader";
 import {TIME} from "../../../constants/Time"
 import AlertModal from "../../modal/AlertModal";
@@ -13,35 +13,21 @@ import {getMeetinroom, postReservation} from "../../../services/axios";
 import {ApiStatusCode} from "../../../types/api/Common/ApiStatusCode";
 import Radios from "../../molecules/Radios";
 import Select from "../../molecules/Select";
+import type {Informations} from "../../../types/ReservationInformations";
 
 
 const Reservation = () => {
+
+    const [isOpenFailReservationAlertModal, setIsOpenFailReservationAlertModal] = useState(false);
+    const [isOpenNetworkFailReservationAlertModal, setIsOpenNetworkFailReservationAlertModal] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
+
+    const [isOpen, setIsOpen] = useState(false);
 
     const [meetingroom, setMeetingroom] = useState([{
         roomCode: "",
         roomName: ""
     }]);
-
-    // useEffect(() => {
-    //     getMeetinroom().then(response => setMeetingroom(response.date.data))
-    //     getMeetinroom().then(response => console.log(response.data.data))
-    // }, []);
-
-    useEffect(() => {
-
-        const getData = async () => {
-            try {
-                const response = await getMeetinroom();
-                const fetchedRoomList = response.data.data.roomList;
-                setMeetingroom(fetchedRoomList);
-                console.log(fetchedRoomList);
-            } catch (err) {
-                console.error(err);
-            }
-        };
-        getData();
-    }, []);
-
 
     const [informations, setInformations] = useState({
         meetingroom: "",
@@ -55,64 +41,47 @@ const Reservation = () => {
         topic: ""
     });
 
-    // const room_cd = () => {
-    //     const selectedRoom = meetingroom.find(room => room.roomName === informations.meetingroom);
-    //     if (selectedRoom) {
-    //         return selectedRoom.roomCd.toString();
-    //     } else {
-    //         return "";
-    //     }
-    // };
-    //
-    const handleChange = (e) => {
-        // setInformations({
-        //     ...informations,
-        //     [e.target.name]: e.target.value,
-        // })
-        const {name, value} = e.target;
-        // const roomCdValue = room_cd();
-        setInformations((prevInformations) => ({
-            ...prevInformations,
-            [name]: value,
-            // roomCd: roomCdValue
-        }));
-    };
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const response = await getMeetinroom();
+                const fetchedRoomList = response.data.data.roomList;
+                setMeetingroom(fetchedRoomList);
+                console.log(fetchedRoomList);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        getData();
+    }, []);
 
-    const [alertMessage, setAlertMessage] = useState("");
-    const [failReservationAlertModal, setFailReservationAlertModal] = useState(false);
-    const [networkFailReservationAlertModal, setNetworkFailReservationAlertModal] = useState(false);
+    const openSuccessReservationModal = () => {
+        setIsOpen(true);
+    }
 
-    const closeFailReservationModal = () => {
-        setFailReservationAlertModal(false);
+    const closeSuccessReservationModal = () => {
+        setIsOpen(false);
     };
 
     const openFailReservationModal = () => {
         setAlertMessage(alertMessage);
-        setFailReservationAlertModal(true);
+        setIsOpenFailReservationAlertModal(true);
+    };
+
+    const closeFailReservationModal = () => {
+        setIsOpenFailReservationAlertModal(false);
     };
 
     const openNetworkFailReservationModal = () => {
-        setNetworkFailReservationAlertModal(true);
+        setIsOpenNetworkFailReservationAlertModal(true);
+    };
+
+    const closeNetworkFailReservationModal = () => {
+        setIsOpenNetworkFailReservationAlertModal(true);
     };
 
     const postReservationInformatios = async () => {
-        type Informations = {
-            ROOM_CD: string,
-            START_TM: string,
-            END_TM: string,
-            RESERVATION_DT: string,
-            CHECKER: string,
-            TOPIC: string,
-            PARTICIPANT: string
-        };
 
-        // const room_cd = () => {
-        //     if (informations.meetingroom === "대 회의실") {
-        //         return "1"
-        //     } else {
-        //         return "2"
-        //     }
-        // }
         const room_cd = () => {
             const selectedRoom = meetingroom.find(room => room.roomName === informations.meetingroom);
             if (selectedRoom) {
@@ -128,7 +97,7 @@ const Reservation = () => {
         const topic = `${informations.topic}`
         const participants = `${informations.participants}`
 
-        const request = {
+        const request: Informations = {
             ROOM_CD: room_cd(),
             START_TM: start_tm,
             END_TM: end_tm,
@@ -156,32 +125,22 @@ const Reservation = () => {
         })
     }
 
-    // useEffect(() => {
-    //     postReservationInformatios().then();
-    // }, []);
-    useEffect(() => {
-        const postData = async () => {
-            try {
-                await postReservationInformatios();
-            } catch (err) {
-                console.error(err);
-            }
-        };
-        postData();
-    }, []);
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setInformations((prevInformations) => ({
+            ...prevInformations,
+            [name]: value,
+        }));
+    };
 
-    const navigate = useNavigate();
-
-    const useToGoInit = () => {
-        navigate(ROUTE.INIT)
+    const handleOnClickButton = async () => {
+        const reservationSuccess = await postReservationInformatios();
+        if (reservationSuccess) {
+            openSuccessReservationModal();
+        }
     };
 
     const formElements = [
-        // {
-        //     key: "회의실",
-        //     value: <Radios list={Object.values(MEETINGROOM)} name={"meetingroom"}
-        //                    handleRadioChange={handleChange}></Radios>
-        // },
         {
             key: "회의실",
             value: <Radios list={meetingroom.map(room => room.roomName)} name="meetingroom"
@@ -236,25 +195,10 @@ const Reservation = () => {
         }
     ];
 
-    const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
 
-    const handleOnClickButton = async () => {
-        const reservationSuccess = await postReservationInformatios();
-        if (reservationSuccess) {
-            openSuccessModal();
-        }
-    };
-
-    const openSuccessModal = () => {
-        setIsOpen(true);
-    }
-
-    const openFailModal = () => {
-        setIsOpen(true);
-    }
-
-    const closeModal = () => {
-        setIsOpen(false);
+    const useToGoInit = () => {
+        navigate(ROUTE.INIT);
     };
 
     return (
@@ -270,17 +214,16 @@ const Reservation = () => {
             <p>
                 <button className="reservation-button" onClick={handleOnClickButton}>예약</button>
                 <AlertModal body_text="회의실 예약이 완료되었습니다." isOpen={isOpen}
-                            closeModal={closeModal}></AlertModal>
-
+                            closeModal={closeSuccessReservationModal}></AlertModal>
             </p>
             <div>
                 <img className="home" src={Home} onClick={useToGoInit} alt="home"/>
             </div>
             </body>
-            <AlertModal isOpen={failReservationAlertModal} body_text={"회의실 예약에 실패했습니다."}
+            <AlertModal isOpen={isOpenFailReservationAlertModal} body_text={"회의실 예약에 실패했습니다."}
                         closeModal={closeFailReservationModal}></AlertModal>
-            <AlertModal isOpen={networkFailReservationAlertModal} body_text={"회의실 예약에 실패했습니다.\n네트워크를 확인해주세요."}
-                        closeModal={closeFailReservationModal}></AlertModal>
+            <AlertModal isOpen={isOpenNetworkFailReservationAlertModal} body_text={"회의실 예약에 실패했습니다.\n네트워크를 확인해주세요."}
+                        closeModal={closeNetworkFailReservationModal}></AlertModal>
         </div>
     );
 };

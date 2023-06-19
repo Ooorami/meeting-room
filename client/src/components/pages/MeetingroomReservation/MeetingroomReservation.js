@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import "./MeetingroomReservation.css";
 
-import Home from "../../../img/Home.png";
+import Home from "../../../assets/img/Home.png";
 import ReservationHeader from "../../ReservationHeader";
 import AlertModal from "../../modal/AlertModal";
 import {postMeetingroom} from "../../../services/axios";

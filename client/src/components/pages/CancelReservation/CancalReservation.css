@@ -12,7 +12,6 @@ span {
 
 p {
     line-height: 2em;
-    margin-top: 30px;
 }
 
 input[type="radio"] {
@@ -63,42 +62,8 @@ select option {
 
 .cancelReservation-title {
     margin-bottom: 50px;
-}
-
-.table-container {
-    height: 300px;
-    overflow-y: auto;
-    width: 850px;
-}
-
-table {
-    border-collapse: collapse;
-    border: 1px solid var(--primary-color-black);
-    white-space: nowrap;
-    width: 100%;
-}
-
-tr {
-    display: flex;
-}
-
-th {
-    border: 1px solid var(--primary-color-black);
-    padding: 8px;
-    text-align: center;
-    background-color: var(--secondary-color-yellow);
-    color: var(--primary-color-black);
-    width: 40%;
-    font-family: "Jua", sans-serif !important;
-}
-
-th div {
-    /*text-align: center;*/
-    /*vertical-align: middle;*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Jua", sans-serif !important;
+    background-color: var(--primary-color-white);
+    color: var(--primary-color-tiffanyBlue);
 }
 
 .cancelReservation-button {

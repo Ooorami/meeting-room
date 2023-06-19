@@ -2,5 +2,7 @@ export const ROUTE = {
     INIT: "/",
     RESERVATION: "/reservation",
     CANCELRESERVATION: "/cancelReservation",
-    CONFIRMRESERVATION: "/confirmReservation",
+    MEETINGROOMRESERVATION: "/meetingroomReservation",
+    SIGNUP: "/signup",
+    LOGIN: "/login"
 }

@@ -15,6 +15,11 @@ export const getMeetinroom = async () => {
         .catch(err => Promise.reject(err));
 }
 
+export const postMeetingroom = async (meetingroomInformations) => {
+    return await customAxios.post(API.MEETINGROOM.CREATE, meetingroomInformations)
+        .catch(err => Promise.reject(err));
+}
+
 export const postReservation = async (informations) => {
     return await customAxios.post(API.RESERVATION.REGISTRATION, informations, {timeout: 5000})
         .catch(err => Promise.reject(err));
@@ -27,6 +32,6 @@ export const getReservation = async () => {
 }
 
 export const postCancelReservation = async (cancelInformations) => {
-    return await customAxios.post(API.RESERVATION.CANCEL, cancelInformations, {timeout: 5000})
+    return await customAxios.post(API.RESERVATION.CANCEL, cancelInformations)
         .catch(err => Promise.reject(err));
 }

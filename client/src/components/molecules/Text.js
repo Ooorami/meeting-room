@@ -1,8 +1,12 @@
 import React from "react";
 
-const Text = ({text}) => {
+interface TextProps {
+    textClassName?: string;
+}
+
+const Text = ({text}, textProps: TextProps) => {
     return (
-        <div className = "text">
+        <div className={textProps.textClassName}>
             <p> {text} </p>
         </div>
     );
