@@ -10,12 +10,10 @@ import org.springframework.stereotype.Service
 class ReservationLogMapper {
     fun reservationSaveRequestDtoToReservationLog(request: ReservationSaveRequestDto): ReservationLog {
         return ReservationLog(
-            key = ReservationLog.Key(
-                roomCd = request.roomCd,
-                reservationDt = request.reservationDt,
-                reservationChecker = request.checker,
-                startTm = request.startTm
-            ),
+            roomCd = request.roomCd,
+            reservationDt = request.reservationDt,
+            reservationChecker = request.checker,
+            startTm = request.startTm,
             endTm = request.endTm,
             reservationTm = TimeUtil.getNowTimeHHMMSS(),
             topic = request.topic,

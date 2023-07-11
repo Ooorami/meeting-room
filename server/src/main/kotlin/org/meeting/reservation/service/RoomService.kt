@@ -36,7 +36,7 @@ class RoomService(
             roomList = meetingRoom.map { room ->
                 RoomInformation(
                     roomName = room.roomNm,
-                    roomCd = room.key.roomCd
+                    roomCd = room.roomCd
                 )
             }
         )

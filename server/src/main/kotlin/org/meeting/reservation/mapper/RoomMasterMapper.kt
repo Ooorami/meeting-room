@@ -10,9 +10,9 @@ class RoomMasterMapper(
     private val roomMasterRepository: RoomMasterRepository
 ) {
     fun createRoomRequestDtoToEntity(request: CreateRoomRequestDto): RoomMaster {
-        val lastRoomCd = roomMasterRepository.findFirstByOrderByKey_RoomCdDesc()?.key?.roomCd ?: 0
+        val lastRoomCd = roomMasterRepository.findFirstByOrderByRoomCdDesc()?.roomCd ?: 0
         return RoomMaster(
-            key = RoomMaster.Key(lastRoomCd + 1),
+            roomCd = lastRoomCd + 1,
             roomNm = request.roomNm
         )
     }

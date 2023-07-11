@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface RoomMasterRepository: JpaRepository<RoomMaster, RoomMaster.Key> {
+interface RoomMasterRepository: JpaRepository<RoomMaster, Int> {
     fun findByRoomNm(roomNm: String): RoomMaster?
-    fun findFirstByOrderByKey_RoomCdDesc(): RoomMaster?
+    fun findFirstByOrderByRoomCdDesc(): RoomMaster?
 }
 

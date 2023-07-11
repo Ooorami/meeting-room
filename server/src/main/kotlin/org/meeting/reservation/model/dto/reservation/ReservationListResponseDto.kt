@@ -10,6 +10,8 @@ data class ReservationListResponseDto(
 )
 
 data class ReservationInformation(
+    @JsonProperty("RESERVATION_ID")
+    val reservationId: Int,
     @JsonProperty("ROOM_CD")
     val roomCd: String,
     @JsonProperty("RESERVATION_DT")

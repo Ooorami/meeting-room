@@ -14,22 +14,6 @@ class ReservationService(
     private val reservationLogMapper: ReservationLogMapper
 ) {
     fun newReservation(request: ReservationSaveRequestDto): ReservationSaveCheckerVto {
-        val preRoomReservation =
-            reservationLogRepository.findByKey_RoomCdAndKey_ReservationDtAndKey_ReservationCheckerAndKey_StartTmAndUseYn(
-                request.roomCd, request.reservationDt, request.checker, request.startTm
-            )
-
-        if (preRoomReservation != null) {
-            val preReservationAlertString =
-                    "예약일자: ${preRoomReservation.key.reservationDt}" +
-                    "예약자: ${preRoomReservation.key.reservationDt}" +
-                    "예약시간: ${preRoomReservation.key.startTm} ~ ${preRoomReservation.endTm}"
-            return ReservationSaveCheckerVto(
-                isReservationSuccess = false,
-                reservationMessage = "이미 예약된 건이 존재합니다. ($preReservationAlertString)"
-            )
-        }
-
         val reservation = reservationLogMapper.reservationSaveRequestDtoToReservationLog(request)
         reservationLogRepository.save(reservation)
 
@@ -39,16 +23,21 @@ class ReservationService(
         )
     }
 
-    fun cancelReservation(cancelRequest: ReservationCancelRequestDto): ReservationCancelCheckerVto {
-        val preRoomReservation =
-            reservationLogRepository.findByKey_RoomCdAndKey_ReservationDtAndKey_ReservationCheckerAndKey_StartTm(
-                cancelRequest.roomCd, cancelRequest.reservationDt, cancelRequest.checker, cancelRequest.startTm
-            ) ?: return ReservationCancelCheckerVto(
-                    isReservationCancelSuccess = false,
-                    reservationCanelMessage = "예약취소 요청에 대한 예약건이 없습니다. 취소할 예약이 없습니다."
-                )
+    fun updateReservation(request: ReservationUpdateRequestDto) {
+        val reservation = reservationLogRepository.findById(request.id).orElse(null)
+            ?: throw RuntimeException("예약정보 업데이트 대상을 찾지못했습니다. 요청ID: ${request.id}")
 
-        if(preRoomReservation.useYn == UseYn.NO.code)
+        reservation.update(request)
+    }
+
+    fun cancelReservation(cancelRequest: ReservationCancelRequestDto): ReservationCancelCheckerVto {
+        val preRoomReservation = reservationLogRepository.findById(cancelRequest.id).orElse(null)
+            ?: return ReservationCancelCheckerVto(
+                isReservationCancelSuccess = false,
+                reservationCanelMessage = "예약취소 요청에 대한 예약건이 없습니다. 취소할 예약이 없습니다."
+            )
+
+        if (preRoomReservation.useYn == UseYn.NO.code)
             return ReservationCancelCheckerVto(
                 isReservationCancelSuccess = false,
                 reservationCanelMessage = "이미 예약취소된 건입니다."
@@ -63,17 +52,16 @@ class ReservationService(
     }
 
     fun getReservationList(request: ReservationListRequestDto): ReservationListResponseDto {
-        val reservationList = reservationLogRepository.findByKey_RoomCdAndKey_ReservationDt(
-            request.roomCd, request.reservationDt
-        )
+        val reservationList = reservationLogRepository.findByRoomCdAndReservationDt(request.roomCd, request.reservationDt)
 
         return ReservationListResponseDto(
             reservationList = reservationList.map { reservation ->
                 ReservationInformation(
-                    roomCd = reservation.key.roomCd,
-                    reservationDt = reservation.key.reservationDt,
-                    checker = reservation.key.reservationChecker,
-                    startTm = reservation.key.startTm,
+                    reservationId = reservation.id!!,
+                    roomCd = reservation.roomCd,
+                    reservationDt = reservation.reservationDt,
+                    checker = reservation.reservationChecker,
+                    startTm = reservation.startTm,
                     endTm = reservation.endTm,
                     reservationTm = reservation.reservationTm
                 )

@@ -1,16 +1,28 @@
 package org.meeting.reservation.model.entity
 
+import org.meeting.reservation.model.dto.reservation.ReservationUpdateRequestDto
 import org.meeting.reservation.model.enum.UseYn
 import java.io.Serializable
-import javax.persistence.Column
-import javax.persistence.Embeddable
-import javax.persistence.EmbeddedId
-import javax.persistence.Entity
+import javax.persistence.*
 
 @Entity(name = "RESERVATION_L")
 class ReservationLog(
-    @EmbeddedId
-    var key: Key,
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Int? = null,
+
+    @Column(name = "ROOM_CD", length = 10, nullable = false)
+    var roomCd: String,
+
+    @Column(name = "RESERVATION_DT", length = 8, nullable = false)
+    var reservationDt: String,
+
+    @Column(name = "RESERVATION_CHECKER", length = 10, nullable = false)
+    var reservationChecker: String,
+
+    @Column(name = "START_TM", length = 20, nullable = false)
+    var startTm: String,
 
     @Column(name = "END_TM", length = 20, nullable = false)
     var endTm: String,
@@ -25,23 +37,19 @@ class ReservationLog(
     var participant: String?,
 
     @Column(name = "USE_YN", length = 1, nullable = false)
-    var useYn: String = UseYn.YES.code,
+    var useYn: String = UseYn.YES.code
 ) {
-    @Embeddable
-    data class Key(
-        @Column(name = "ROOM_CD", length = 10, nullable = false)
-        var roomCd: String,
-
-        @Column(name = "RESERVATION_DT", length = 8, nullable = false)
-        var reservationDt: String,
-
-        @Column(name = "RESERVATION_CHECKER", length = 10, nullable = false)
-        var reservationChecker: String,
-
-        @Column(name = "START_TM", length = 20, nullable = false)
-        var startTm: String
-    ): Serializable
-
+    fun update(request: ReservationUpdateRequestDto) {
+        apply {
+            reservationDt = request.reservationDt ?: reservationDt
+            reservationChecker = request.reservationChecker ?: reservationChecker
+            startTm = request.startTm ?: startTm
+            endTm = request.endTm ?: endTm
+            reservationTm = request.reservationTm ?: reservationTm
+            topic = request.topic ?: topic
+            participant = request.participant ?: participant
+        }
+    }
     fun cancel() {
         useYn = UseYn.NO.code
     }
