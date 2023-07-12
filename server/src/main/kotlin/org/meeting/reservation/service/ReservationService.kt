@@ -65,7 +65,8 @@ class ReservationService(
                     checker = reservation.reservationChecker,
                     startTm = reservation.startTm,
                     endTm = reservation.endTm,
-                    reservationTm = reservation.reservationTm
+                    reservationTm = reservation.reservationTm,
+                    useYn = reservation.useYn
                 )
             }
         )
