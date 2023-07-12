@@ -28,6 +28,7 @@ class ReservationService(
             ?: throw RuntimeException("예약정보 업데이트 대상을 찾지못했습니다. 요청ID: ${request.id}")
 
         reservation.update(request)
+        reservationLogRepository.save(reservation)
     }
 
     fun cancelReservation(cancelRequest: ReservationCancelRequestDto): ReservationCancelCheckerVto {
@@ -44,6 +45,7 @@ class ReservationService(
             )
 
         preRoomReservation.cancel()
+        reservationLogRepository.save(preRoomReservation)
 
         return ReservationCancelCheckerVto(
             isReservationCancelSuccess = true,

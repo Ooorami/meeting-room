@@ -1,10 +1,10 @@
 import React from "react";
 
-import ReservationHeader from "../../ReservationHeader";
 import "../Init/Init.css";
 import Logo from "../../../assets/img/Logo.png"
 import {useNavigate} from "react-router";
 import {ROUTE} from "../../../constants/Route";
+import ReservationHeader from "../ReservationHeader/ReservationHeader";
 
 
 const Init = () => {
@@ -31,6 +31,7 @@ const Init = () => {
                     </div>
                     <div className="signupInit" onClick={useToGoSignup}>회원가입</div>
                     <div className="loginInit" onClick={useToGoLogin}>로그인</div>
+                    <div className="logout">로그아웃</div>
                 </div>
                 <div>
                     <img className="logo" src={Logo} alt="logo"/>

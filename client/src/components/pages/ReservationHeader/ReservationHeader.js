@@ -1,12 +1,12 @@
 import React, {useEffect, useRef} from "react";
 
 import {useNavigate} from "react-router";
-import {ROUTE} from "../constants/Route";
+import {ROUTE} from "../../constants/Route";
 import {useLocation} from "react-router-dom";
 
 import "./ReservationHeader.css";
-import "../color.css";
-import Text from "./molecules/Text";
+import "../../color.css";
+import Text from "../molecules/Text";
 
 const ReservationHeader = (props) => {
 
@@ -27,7 +27,7 @@ const ReservationHeader = (props) => {
     const cancelReservationTitleRef = useRef(null);
 
     const navigate = useNavigate();
- 
+
     const useToGoReservation = () => {
         navigate(ROUTE.RESERVATION)
     };
