@@ -24,4 +24,6 @@ data class ReservationInformation(
     val endTm: String,
     @JsonProperty("RESERVATION_TM")
     val reservationTm: String?,
+    @JsonProperty("USE_YN")
+    val useYn: String
 )
