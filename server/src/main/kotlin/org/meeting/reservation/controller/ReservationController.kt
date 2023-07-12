@@ -93,11 +93,11 @@ class ReservationController(
         response = ReservationListResponseDto::class
     )
     @RequestMapping(value = ["/list"], method = [RequestMethod.GET])
-    fun getReservationList(@RequestBody request: ReservationListRequestDto): ApiCommonResponse {
+    fun getReservationList(): ApiCommonResponse {
         return ApiCommonResponse(
             statusCode = ApiStatusCode.SUCCESS.code,
             message = "SUCCESS",
-            data = reservationService.getReservationList(request)
+            data = reservationService.getReservationList()
         )
     }
 }

@@ -51,8 +51,8 @@ class ReservationService(
         )
     }
 
-    fun getReservationList(request: ReservationListRequestDto): ReservationListResponseDto {
-        val reservationList = reservationLogRepository.findByRoomCdAndReservationDt(request.roomCd, request.reservationDt)
+    fun getReservationList(): ReservationListResponseDto {
+        val reservationList = reservationLogRepository.findAll()
 
         return ReservationListResponseDto(
             reservationList = reservationList.map { reservation ->
