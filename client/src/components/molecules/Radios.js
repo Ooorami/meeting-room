@@ -12,5 +12,4 @@ const Radios = ({list, name, handleRadioChange}) => {
         </span>
     );
 };
-
 export default Radios;

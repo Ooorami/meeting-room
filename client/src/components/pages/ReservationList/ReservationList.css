@@ -114,7 +114,23 @@ select option {
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%);
 }
 
-@media screen and (max-width: 1360px) {
+.reservationList-table-container .table-container {
+    height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 1200px;
+    position: fixed;
+    left: 200px;
+}
+
+.reservationList-table-container table {
+    border-collapse: collapse;
+    border: 1px solid var(--primary-color-black);
+    white-space: nowrap;
+    width: 1200px;
+}
+
+@media screen and (max-width: 1385px) {
     table {
         width: 800px !important;
         font-size: 13px !important;

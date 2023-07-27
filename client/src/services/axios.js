@@ -26,12 +26,26 @@ export const postReservation = async (informations) => {
 }
 
 export const getReservation = async () => {
-    const responseReservation = await customAxios.get(API.RESERVATION.CHECK);
     return await customAxios.get(API.RESERVATION.CHECK)
         .catch(err => Promise.reject(err));
 }
 
 export const postCancelReservation = async (cancelInformations) => {
     return await customAxios.post(API.RESERVATION.CANCEL, cancelInformations)
+        .catch(err => Promise.reject(err));
+}
+
+export const postChangeReservation = async (changeInformations) => {
+    return await customAxios.post(API.RESERVATION.CHANGE, changeInformations)
+        .catch(err => Promise.reject(err));
+}
+
+export const postSignup = async (memberInformations) => {
+    return await customAxios.post(API.USER.CREATE, memberInformations)
+        .catch(err => Promise.reject(err));
+}
+
+export const postLogin = async (memberInformations) => {
+    return await customAxios.post(API.USER.LOGIN, memberInformations)
         .catch(err => Promise.reject(err));
 }

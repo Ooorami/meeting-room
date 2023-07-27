@@ -1,14 +1,17 @@
 .table-container {
     height: 300px;
     overflow-y: auto;
+    overflow-x: hidden;
     width: 1100px;
+    position: fixed;
+    left: 250px;
 }
 
 table {
     border-collapse: collapse;
     border: 1px solid var(--primary-color-black);
     white-space: nowrap;
-    width: 100%;
+    width: 1100px;
 }
 
 tr {
@@ -26,8 +29,6 @@ th {
 }
 
 th div {
-    /*text-align: center;*/
-    /*vertical-align: middle;*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,4 +37,31 @@ th div {
 
 .applicant {
     padding-top: 3px;
+}
+
+.edit {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.delete {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 870px) {
+    .table-container {
+        left: 30px !important;
+    }
+}
+
+@media screen and (max-width: 870px) {
+    th:nth-last-child(2),
+    th:last-child,
+    td:nth-last-child(2),
+    td:last-child {
+        display: none;
+    }
 }

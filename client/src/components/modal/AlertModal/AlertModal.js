@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 
 import "./AlertModal.css";
-import Text from "../molecules/Text";
+import Text from "../../molecules/Text";
 
 const AlertModal = ({isOpen, closeModal, body_text}) => {
     return (

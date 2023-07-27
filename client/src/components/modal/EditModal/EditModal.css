@@ -1,0 +1,116 @@
+@import "../../../../src/color.css";
+
+.edit-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 650px;
+    height: 530px;
+    transform: translate(-50%, -50%);
+    background-color: var(--primary-color-white);
+    border-radius: 10px;
+    border: 2px solid var(--secondary-color-gray);
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.meeringroomReservationEdit {
+    position: relative;
+    bottom: 20px;
+    color: var(--primary-color-black);
+    font-size: 30px;
+}
+
+.x {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+form {
+    position: relative;
+    bottom: 20px;
+    color: var(--primary-color-black);
+    padding: 20px;
+}
+
+.formContents {
+    line-height: 2em;
+    margin-top: 10px;
+    text-align: left;
+}
+
+input {
+    width: 200px;
+    padding: .8em .5em;
+    font-family: inherit;
+    border: 1px solid var(--secondary-color-gray);
+    border-radius: 5px;
+}
+
+.constraint {
+    font-size: 15px;
+    color: var(--secondary-color-gray);
+}
+
+.modalLabel {
+    line-height: 2rem;
+    padding: 0 0.4em;
+    vertical-align: middle;
+    display: inline-block;
+    width: 110px;
+}
+
+.buttons {
+    padding-top: 20px;
+}
+
+.cancelButton {
+    position: fixed;
+    left: 38%;
+    transform: translateX(-50%);
+    bottom: 17px;
+    display: flex;
+    margin: auto;
+    padding: 7px 50px;
+    font-family: "Jua", sans-serif !important;
+    font-size: 20px;
+    background-color: var(--secondary-color-yellow);
+    color: var(--primary-color-white);
+    border: 2px solid var(--primary-color-white);
+    border-radius: 6px;
+}
+
+.cancelButton:hover {
+    background-color: var(--primary-color-white);
+    color: var(--primary-color-tiffanyBlue);
+    border: 2px solid var(--primary-color-tiffanyBlue);
+}
+
+.editButton {
+    position: fixed;
+    left: 62%;
+    transform: translateX(-50%);
+    bottom: 17px;
+    display: flex;
+    margin: auto;
+    padding: 7px 50px;
+    font-family: "Jua", sans-serif !important;
+    font-size: 20px;
+    background-color: var(--secondary-color-yellow);
+    color: var(--primary-color-white);
+    border: 2px solid var(--primary-color-white);
+    border-radius: 6px;
+}
+
+.editButton:hover {
+    background-color: var(--primary-color-white);
+    color: var(--primary-color-tiffanyBlue);
+    border: 2px solid var(--primary-color-tiffanyBlue);
+}

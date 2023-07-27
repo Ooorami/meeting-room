@@ -1,12 +1,12 @@
 @import "../../../color.css";
 
-.reservationHeader-header {
+.loginHeader-header {
     width: 100%;
     height: 100px;
     display: flex;
 }
 
-.reservationHeader-footer {
+.loginHeader-footer {
     width: 100%;
     height: 30%;
     display: flex;
@@ -14,7 +14,7 @@
     bottom: 0;
 }
 
-.title-reservation {
+.title-signup {
     width: 50%;
     height: 100%;
     display: flex;
@@ -30,11 +30,11 @@
     padding-top: 13px;
 }
 
-.title-reservation:hover {
+.title-signup:hover {
     background-color: var(--secondary-color-yellow);
 }
 
-.title-cancelReservation {
+.title-login {
     width: 50%;
     height: 100%;
     display: flex;
@@ -49,6 +49,6 @@
     padding-top: 13px;
 }
 
-.title-cancelReservation:hover {
+.title-login:hover {
     background-color: var(--secondary-color-yellow);
 }

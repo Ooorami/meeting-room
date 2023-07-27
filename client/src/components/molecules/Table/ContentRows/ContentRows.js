@@ -1,21 +1,24 @@
 import React from "react";
 
-import Td from "../Td/Td";
+import ContentRow from "../ContentRow/ContentRow";
 
-import "./Tr.css"
+import "./ContentRows.css"
 
-const Tr = ({reservation, handleRemove, handleEdit}) => {
+const ContentRows = ({reservation, handleRemove, handleEdit, meetingroom}) => {
     return (
         <tbody>
         {
             reservation.map((item, index) => {
                 item.order = index + 1;
+
                 return (
-                    <Td key={item.order} item={item} handleRemove={handleRemove} handleEdit={handleEdit}></Td>
+                    <ContentRow key={item.order} item={item} handleRemove={handleRemove}
+                                meetingroom={meetingroom}
+                                handleEdit={handleEdit}></ContentRow>
                 )
             })
         }
         </tbody>
     );
 };
-export default Tr;
+export default ContentRows;

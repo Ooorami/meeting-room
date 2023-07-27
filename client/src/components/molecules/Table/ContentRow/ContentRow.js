@@ -4,7 +4,7 @@ import "./ContentRow.css";
 import Edit from "../../../../assets/img/Edit.png";
 import Delete from "../../../../assets/img/Delete.png";
 
-const ContentRow = ({item, handleRemove, handleEdit}) => {
+const ContentRow = ({item, handleRemove, handleEdit, meetingroom}) => {
 
     const onEdit = () => {
         handleEdit(item);
@@ -14,6 +14,9 @@ const ContentRow = ({item, handleRemove, handleEdit}) => {
         handleRemove(item.order);
     }
 
+    const meetingroomName = meetingroom.find((room) => room.roomCd === Number(item.roomCd))?.roomName;
+
+
     return (
         <>
             <tr>
@@ -21,7 +24,7 @@ const ContentRow = ({item, handleRemove, handleEdit}) => {
                     <div className="order">{item.order}</div>
                 </td>
                 <td>
-                    <div className="roomCd">{item.roomCd}</div>
+                    <div className="roomName">{meetingroomName}</div>
                 </td>
                 <td>
                     <div className="reservationDt">{item.reservationDt}</div>

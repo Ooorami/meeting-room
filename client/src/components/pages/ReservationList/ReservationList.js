@@ -1,23 +1,21 @@
 import React, {useEffect, useState} from "react";
 
-import "./CancalReservation.css";
-import "../../../color.css";
-
-import ReservationHeader from "../ReservationHeader/ReservationHeader";
-import AlertModal from "../../modal/AlertModal/AlertModal";
-import Home from "../../../assets/img/Home.png";
+import "./ReservationList.css"
+import {getMeetinroom, getReservation, postCancelReservation, postChangeReservation} from "../../../services/axios";
 import {useNavigate} from "react-router";
 import {ROUTE} from "../../../constants/Route";
-import {getMeetinroom, getReservation, postCancelReservation, postChangeReservation} from "../../../services/axios";
-import {ApiStatusCode} from "../../../types/api/Common/ApiStatusCode";
+import ReservationHeader from "../ReservationHeader/ReservationHeader";
 import Table from "../../molecules/Table/Table";
-import {getCurrentDate} from "../../../util/date";
+import AlertModal from "../../modal/AlertModal/AlertModal";
+import Home from "../../../assets/img/Home.png";
 import EditModal from "../../modal/EditModal/EditModal";
 import type {CancelInformations} from "../../../types/CancelReservationInformations";
+import {ApiStatusCode} from "../../../types/api/Common/ApiStatusCode";
 import type {ChangeReservationInformations} from "../../../types/ChangeReservationInformations";
+import {getCurrentDate} from "../../../util/date";
 import {convertTimeToMinutesReservatonList} from "../../../constants/Time";
 
-const CancelReservation = () => {
+const ReservationList = () => {
     const [isOpenCancelReservationAlertModal, setIsOpenCancelReservationAlertModal] = useState(false);
     const [isOpenFailCancelReservationAlertModal, setIsOpenFailCancelReservationAlertModal] = useState(false);
     const [isOpenNetworkFailCancelReservationAlertModal, setIsOpenNetworkFailCancelReservationAlertModal] = useState(false);
@@ -340,23 +338,6 @@ const CancelReservation = () => {
         }
     };
 
-
-    const handleChange = (e) => {
-        const {name, value} = e.target;
-        setCancelInformations((prevCancelInformations) => ({
-            ...prevCancelInformations,
-            [name]: value,
-        }));
-    };
-
-    const handleOnClickButtonCancelReservation = async () => {
-        const cancelReservationSuccess = await postCancelReservationInformatios(cancelInformations.order);
-        if (cancelReservationSuccess) {
-            openSuccessCancelReservationModal();
-            deleteReservation(); // 예약 정보 삭제
-        }
-    };
-
     const headerData = ["order", "회의실 이름", "예약 날짜", "시작 시간", "종료 시간", "신청자", "예약 변경", "예약 취소"];
 
     const navigate = useNavigate();
@@ -371,24 +352,10 @@ const CancelReservation = () => {
                 <ReservationHeader></ReservationHeader>
             </header>
             <body className="body">
-            <div class='cancelReservation-table-container'>
-                <div>회의실 예약 현황 :</div>
+            <div class='reservationList-table-container'>
                 <Table headerData={headerData} reservation={reservation} handleEdit={handleEdit}
                        meetingroom={meetingroom} handleRemove={handleRemove}></Table>
             </div>
-            <p>
-                <span className='input-order'>
-                    order &nbsp;:&nbsp;
-                    <input onChange={handleChange} className="cancelReservation-input-box" name="order" type="text"
-                           placeholder="order를 입력하세요."></input>
-                </span>
-            </p>
-            <p>
-                <button className="cancelReservation-button" onClick={handleOnClickButtonCancelReservation}>예약 취소
-                </button>
-                <AlertModal body_text="회의실 예약 취소가 완료되었습니다." isOpen={isOpenCancelReservationAlertModal}
-                            closeModal={closeSuccessCancelReservationModal}></AlertModal>
-            </p>
             <div>
                 <img className="home" src={Home} onClick={useToGoInitReservation} alt="home"/>
             </div>
@@ -398,6 +365,8 @@ const CancelReservation = () => {
             <AlertModal isOpen={isOpenNetworkFailCancelReservationAlertModal}
                         body_text={"회의실 예약 취소에 실패했습니다.\n네트워크를 확인해주세요."}
                         closeModal={closeNetworkFailCancelReservationModal}></AlertModal>
+            <AlertModal body_text="회의실 예약 취소가 완료되었습니다." isOpen={isOpenCancelReservationAlertModal}
+                        closeModal={closeSuccessCancelReservationModal}></AlertModal>
             <AlertModal isOpen={isOpenFailChangeReservationAlertModal} body_text={"회의실 예약 변경에 실패했습니다."}
                         closeModal={closeFailChangeReservationModal}></AlertModal>
             <AlertModal isOpen={isOpenNetworkFailChangeReservationAlertModal}
@@ -410,4 +379,4 @@ const CancelReservation = () => {
         </div>
     );
 };
-export default CancelReservation;
+export default ReservationList;

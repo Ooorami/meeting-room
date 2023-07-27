@@ -1,0 +1,71 @@
+.login {
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color-tiffanyBlue);
+    font-size: 20px;
+    color: var(--primary-color-white);
+}
+
+.login:hover {
+    color: var(--primary-color-white);
+}
+
+.login-title {
+    margin-bottom: 50px;
+    background-color: var(--primary-color-white);
+    color: var(--primary-color-tiffanyBlue);
+}
+
+.label {
+    display: inline-block;
+    width: 140px;
+    color: var(--primary-color-white);
+}
+
+.login-button {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 80px;
+    display: flex;
+    margin: auto;
+    padding: 10px 130px;
+    font-family: "Jua", sans-serif !important;
+    font-size: 20px;
+    background-color: var(--secondary-color-yellow);
+    color: var(--primary-color-white);
+    border: 2px solid var(--primary-color-white);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: var(--primary-color-white);
+    color: var(--primary-color-tiffanyBlue);
+}
+
+.home {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 850px) {
+    .label {
+        width: 95px !important;
+    }
+
+    .login-button {
+        padding: 10px 80px !important;
+    }
+}
+
+@media screen and (max-height: 585px) {
+    .login {
+        overflow-y: scroll !important;
+        height: 585px !important;
+    }
+}

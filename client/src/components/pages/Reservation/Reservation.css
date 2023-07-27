@@ -24,7 +24,6 @@ input[type="radio"] {
 
 select {
     width: 200px;
-    /*height: 40px;*/
     padding: .8em .5em;
     font-family: inherit;
     background: var(--primary-color-white) url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
@@ -41,7 +40,7 @@ select::-ms-expand {
 
 select option {
     color: var(--secondary-color-navy);
-    /*font-size: 15px;*/
+
 }
 
 .reservation {
@@ -58,6 +57,7 @@ select option {
     position: absolute;
     left: 28%;
     right: 28%;
+    color: var(--primary-color-white);
 }
 
 .reservation-title {
@@ -80,6 +80,7 @@ select option {
     color: var(--primary-color-white);
     border: 2px solid var(--primary-color-white);
     border-radius: 6px;
+    cursor: pointer;
 }
 
 .reservation-button:hover {
@@ -123,4 +124,94 @@ select option {
 
 .home:hover {
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%);
+}
+
+@media screen and (max-width: 1275px) {
+    .reservation {
+        overflow-x: hidden;
+    }
+
+    input[type="radio"] {
+        margin-right: 5px !important;
+    }
+
+    label {
+        padding: 0.2em 0.2em !important;
+    }
+
+    select {
+        width: 100px !important;
+    }
+}
+
+@media screen and (max-width: 832px) {
+    select {
+        width: 89px !important;
+        background-size: 30% !important;
+    }
+
+    input[type="radio"] {
+        width: 17px !important;
+        height: 17px !important;
+    }
+
+    .reservation {
+        font-size: 17px;
+    }
+
+    .label {
+        width: 90px !important;
+    }
+
+    .date {
+        width: 176px;
+    }
+
+    .input-box {
+        width: 176px !important;
+    }
+
+    .reservation-button {
+        padding: 10px 90px;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    select {
+        width: 65px !important;
+        background-size: 15% !important;
+    }
+
+    label {
+        padding: 0.2em 0.1em !important;
+    }
+
+    input[type="radio"] {
+        width: 15px !important;
+        height: 15px !important;
+    }
+
+    .reservation {
+        font-size: 13px;
+    }
+
+    .reservationLabel {
+        width: 67px !important;
+    }
+
+    .date {
+        width: 120px;
+    }
+
+    .input-box {
+        width: 120px !important;
+    }
+}
+
+@media screen and (max-height: 720px) {
+    .reservation {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        height: 720px !important;
+    }
 }

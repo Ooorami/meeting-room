@@ -6,6 +6,11 @@ export const API = {
     RESERVATION: {
         REGISTRATION: "/api/reservation/create",
         CANCEL: "/api/reservation/cancel",
-        CHECK: "/api/reservation/list"
+        CHECK: "/api/reservation/list",
+        CHANGE: "/api/reservation"
     },
+    USER: {
+        CREATE: "/api/user",
+        LOGIN: "/api/user/login"
+    }
 };
